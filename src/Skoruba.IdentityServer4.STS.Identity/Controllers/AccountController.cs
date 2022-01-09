@@ -246,6 +246,8 @@ namespace Skoruba.IdentityServer4.STS.Identity.Controllers
                 return SignOut(new AuthenticationProperties { RedirectUri = url }, vm.ExternalAuthenticationScheme);
             }
 
+            if(!string.IsNullOrWhiteSpace(vm.PostLogoutRedirectUri))
+                return Redirect(vm.PostLogoutRedirectUri);
             return View("LoggedOut", vm);
         }
 
